@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}
+    Ekart | Cart
+{% endblock %}
+{% block body %}
+<div class="row">
+  <div class="col-md-9 p-2">
+    Customer & Cart details
+    <h5 class="bg-danger text-white p-2">Customer Details</h5>
+    <P><b>Name :</b>{{user.username}}</P>
+    <p><b>Contact No.:</b> 1234456</p>
+    <p><b>Email :</b>{{user.email}}</p>
+
+    <h5 class="bg-danger text-white p-2">Cart Details</h5>
+    {% for x in cart_items%}
+   <div class="row">
+    <div class="col-md-4 mt-2">
+      <img src="{{x.product.image.url}}" width="100%" style="height: 300px;" border="2px solid">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <p class="card-title"><b>Name :</b> {{x.product.product_name}}</p>
+        <p class="card-text"><b>Price :</b> {{x.product.price}}</p> 
+        {% comment %} <p class="card-text"><b>Quantity :</b>    {% endcomment %}
+        {% comment %} <a href="/updateqty/0/{{x.product.product_id}}"><button class="btn btn-danger">-</button></a>
+        <input type ="number" value="{{x.quantity}}"></a>
+        <a href="/updateqty/1/{{x.product.product_id}}"><button class="btn btn-danger">+</button></a> {% endcomment %}
+       </p>
+        <p class="card-text"><b>Date : </b> {{x.date_added}} Rs</p>  
+        <p class="card-text"><b>Description :</b> {{x.product.desc}}</p> 
+        {% comment %} <a href="/removeCart/{{x.product_id}}"><button type="submit" class="btn btn-danger">Remove</button></a> {% endcomment %}
+        
+    </div>
+   </div>
+  {% endfor %}
+  
+  <div class="col-md-3 mt-2 p-4">
+    <h5 class="bg-danger text-white p-2">Total</h5>
+    <p><b>Total Item : {{items}}</b></p>
+    <hr>
+    <p><b>Total Amount : </b>Rs.&nbsp;&nbsp;{{total}}</p>
+    <a href="/makepayment"><button type="submit" class="btn btn-danger">Make Payment</button></a>
+  </div>
+</div>
+{% endblock %}
